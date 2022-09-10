@@ -1,19 +1,20 @@
 const {Schema, model} = require('mongoose');
-const review = require('../dataBase/Review');
+const reviewSchema = require("./Review");
+const mongoose = require("mongoose");
+
 
 const deviceSchema = new Schema({
     name: {
         type: String,
-        required: false,
+        required: true,
         trim: true,
     },
     image: {
         type: String,
-        required: false
     },
     price: {
         type: Number,
-        // required: true,
+        required: true,
         trim: true,
     },
     rating: {
@@ -22,7 +23,7 @@ const deviceSchema = new Schema({
         default: 0,
     },
     reviews: [
-        review
+        reviewSchema
     ],
     numberReviews: {
         type: Number,
@@ -31,11 +32,11 @@ const deviceSchema = new Schema({
     },
     type: {
         type: String,
-        // required: true,
+        required: true,
     },
     brand: {
         type: String,
-        // required: true,
+        required: true,
     },
     statusOnMagazine: {
         type: Boolean,

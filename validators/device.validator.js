@@ -9,9 +9,6 @@ const createDeviceValidator = Joi.object({
         .trim(),
     price: Joi
         .number(),
-    rating: Joi
-        .number()
-        .max(10),
     type: Joi
         .string()
         .alphanum()

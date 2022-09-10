@@ -4,16 +4,17 @@ const {authMiddleware} = require("../middlewares");
 // const commentByIdMiddleware = require('../middlewares/commentById.middleware');
 // const userController = require("../controllers/user.controller");
 const deviceByIdMiddleware = require("../middlewares/deviceById.middleware");
+// const {protect} = require("../middlewares/auth.middleware");
 
-router.get(
-    '/',
-    commentController.getAllComments);
-
-router.get(
-    '/:_id',
-    deviceByIdMiddleware.checkDevIdMiddleware,
-    commentController.getCommentByID
-);
+// router.get(
+//     '/',
+//     commentController.getAllComments);
+//
+// router.get(
+//     '/:_id',
+//     deviceByIdMiddleware.checkDevIdMiddleware,
+//     commentController.getCommentByID
+// );
 
 router.post(
     '/:_id',
@@ -21,11 +22,10 @@ router.post(
     commentController.createComment
 );
 
-// router.get(
-//     '/:device_id/:comment_id',
-//     commentByIdMiddleware.checkIdMiddleware,
-//     commentController.getCommentsById
-// );
+router.get(
+    '/:nick_name',
+    commentController.getCommentByID
+);
 
 // router.delete(
 //     '/:_id',

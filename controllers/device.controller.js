@@ -3,6 +3,7 @@ const {emailService, deviceService} = require("../service");
 const {USER_DELETE} = require("../errors");
 const Device = require("../dataBase/Device");
 const {getDeviceBy} = require("../service/deviceSpec.service");
+const review = require("../dataBase/Review");
 
 module.exports = {
     getAllDevices: async (req, res, next) => {
@@ -48,19 +49,17 @@ module.exports = {
     // },
 
 
-
-
     createDev: async (req, res) => {
-        const device = new Device({
-            name: req.body.name,
-            email: req.body.email,
-            price: req.body.price,
-            image: req.file.image,
-            brand: req.body.brand,
-            type: req.body.type
-        })
-
         try {
+            const device = new Device({
+                name: req.body.name,
+                email: req.body.email,
+                price: req.body.price,
+                image: `http://localhost:5000/static/${req.file.filename}`,
+                brand: req.body.brand,
+                type: req.body.type
+            })
+
             await device.save();
             res.send({
                 status: true,
@@ -79,7 +78,7 @@ module.exports = {
 
             const device = await Device.findByIdAndUpdate(device_id, req.body, {new: true}).lean();
 
-            await emailService.sendMail(device.email, UPDATE, {deviceName: device.name, price});
+            // await emailService.sendMail(device.email, UPDATE, {deviceName: device.name, price});
 
             res.json(device);
         } catch (e) {

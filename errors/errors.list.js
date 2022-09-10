@@ -47,5 +47,15 @@ module.exports = {
     WRONG_TOKEN: {
         message: 'Wrong token',
         status: 401
+    },
+
+    Not_Authorized: {
+        message: 'Not authorize',
+        status: 401
+    },
+
+    Product_Already_Reviewed: {
+        message: 'Product_Already_Reviewed',
+        status: 401
     }
 };

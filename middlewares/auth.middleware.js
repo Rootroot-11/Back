@@ -5,6 +5,8 @@ const ErrorHandler = require("../errors/ErrorHandler");
 const {verifyToken} = require("../service/jwt.service");
 const O_Auth = require("../dataBase/O_Auth");
 const User = require("../dataBase/User");
+const {Not_Authorized} = require("../errors");
+const asyncHandler = require('express-async-handler');
 
 module.exports = {
     checkPassword: async (req, res, next) => {
@@ -25,17 +27,10 @@ module.exports = {
             next();
         }
         try {
-            // const token = req.headers.authorization.split(' ')[1];
-            // if (!token) {
-            //     return res.status(403).json({message: "Пользователь не авторизован"})
-            // }
-
-            // const decodedData = jwt.verify(token, ACCESS_SECRET_KEY);
-
             const data = await O_Auth.findOne({
                 access_token: req.headers.authorization.split(' ')[1],
                 refresh_token: req.headers.authorization.split(' ')[0]
-            })
+            });
 
             req.user = await User.findOne({_id: data.user_id});
             next();
@@ -66,4 +61,36 @@ module.exports = {
             next(e);
         }
     },
+
+    protect: asyncHandler(async (req, res, next) => {
+        let access_token
+
+        if (
+            req.headers.authorization &&
+            req.headers.authorization.startsWith('Bearer')
+        ) {
+            try {
+                access_token = req.headers.authorization.split(' ') [1];
+                const decoded = jwt.verify(access_token, process.env.JWT_SECRET);
+                req.user = await User.findById(decoded._id).select('-password');
+                next();
+            } catch (error) {
+                console.log(error)
+                throw new ErrorHandler(Not_Authorized.message, Not_Authorized.status)
+            }
+        }
+        if (!access_token) {
+            throw new ErrorHandler(Not_Authorized.message, Not_Authorized.status)
+        }
+    })
+
 };
+
+
+// const admin = (req, res, next) => {
+//     if (req.user && req.user.isAdmin) {
+//         next()
+//     } else {
+//         throw new ErrorHandler (Not_Authorized.message, Not_Authorized.status);
+//     }
+// }
