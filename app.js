@@ -12,11 +12,7 @@ mongoose.connect('mongodb+srv://Georgiy:georgiy1234@myclaster.j4gkvjp.mongodb.ne
 
 const app = express();
 
-app.use(
-    cors({origin: 'http://127.0.0.1:5500',
-        credentials: true,
-        }
-    ));
+
 app.use(express.json());
 // app.use(filePathMiddleware(path.resolve(__dirname, 'files')))
 app.use(express.urlencoded({extended: true}));
@@ -26,6 +22,9 @@ app.use('/static', express.static(__dirname + '/uploads'));
 app.listen(process.env.PORT || 5000, () => {
     console.log('App listen 5000');
 });
+
+app.use(cors(
+    ));
 
 const {userRouter, deviceRouter, authRouter, orderRouter, commentRouter} = require('./routes');
 
