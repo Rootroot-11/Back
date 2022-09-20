@@ -24,7 +24,7 @@ module.exports = {
             if (error) {
                 throw new ErrorHandler(error.details[0].message, BAD_REQUEST.status);
             }
-            req.user = value;
+            req.body = value;
 
             next();
         } catch (e) {

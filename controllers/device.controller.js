@@ -4,6 +4,7 @@ const {USER_DELETE} = require("../errors");
 const Device = require("../dataBase/Device");
 const {getDeviceBy} = require("../service/deviceSpec.service");
 const review = require("../dataBase/Review");
+const s3Service = require("../service/s3Service");
 
 module.exports = {
     getAllDevices: async (req, res, next) => {
@@ -51,20 +52,28 @@ module.exports = {
 
     createDev: async (req, res) => {
         try {
-            const device = new Device({
+            let device = new Device({
                 name: req.body.name,
                 email: req.body.email,
                 price: req.body.price,
-                image: `http://localhost:5000/static/${req.file.filename}`,
+                // image: req.files,
                 brand: req.body.brand,
                 type: req.body.type
-            })
+            });
 
+            const avatar = req.files;
+
+            if (avatar) {
+                const info = await s3Service.uploadImage(avatar, 'users', device._id.toString());
+
+                device = await Device.findByIdAndUpdate({_id: device._id}, {avatar: info.Location}, {new: true});
+            }
             await device.save();
             res.send({
                 status: true,
                 message: 'File is uploaded'
             })
+
         } catch (e) {
             console.log(e);
         }

@@ -6,15 +6,15 @@ const mongoose = require("mongoose");
 const deviceSchema = new Schema({
     name: {
         type: String,
-        required: true,
+        // required: true,
         trim: true,
     },
-    image: {
+    avatar: {
         type: String,
     },
     price: {
         type: Number,
-        required: true,
+        // required: true,
         trim: true,
     },
     rating: {
@@ -32,19 +32,19 @@ const deviceSchema = new Schema({
     },
     type: {
         type: String,
-        required: true,
+        // required: true,
     },
     brand: {
         type: String,
-        required: true,
+        required: false,
     },
     statusOnMagazine: {
         type: Boolean,
-        trim: true
+        trim: false
     },
     email: {
         type: String,
-        trim: true
+        trim: false
     }
 }, {timestamps: true});
 

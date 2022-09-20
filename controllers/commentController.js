@@ -100,35 +100,46 @@ module.exports = {
         }
     },
 
-    deleteComment: async (req, res, next) => {
+    deleteComment:  async (req, res) => {
         try {
-            const _id = req.params._id;
+            const {_id} = req.params._id;
 
-            const deletedReview = Review.findOne({_id: _id}).then(async (review) => {
-                if (!review) {
-                    return res.status(400).send({
-                        message: 'No comment found',
-                        data: {}
-                    });
-                } else {
-                    let current_user = req.user;
+            const deletedReview = await Review.findByIdAndDelete(_id);
 
-                    if (review.user_id != current_user._id) {
-                        return res.status(400).send({
-                            message: 'Access denied',
-                            data: {}
-                        })
-                    } else {
-                        await Review.deleteOne({_id: _id})
-                    }
-                }
-            });
-
-            res.json(USER_DELETE.status, USER_DELETE.message);
+            res.status(200);
         } catch (e) {
-            next(e);
+            console.log(e);
         }
     }
+    // deleteComment: async (req, res, next) => {
+    //     try {
+    //         const _id = req.params._id;
+    //
+    //         const deletedReview = Review.findOne({_id: _id}).then(async (review) => {
+    //             if (!review) {
+    //                 return res.status(400).send({
+    //                     message: 'No comment found',
+    //                     data: {}
+    //                 });
+    //             } else {
+    //                 let current_user = req.user;
+    //
+    //                 if (review.user_id != current_user._id) {
+    //                     return res.status(400).send({
+    //                         message: 'Access denied',
+    //                         data: {}
+    //                     })
+    //                 } else {
+    //                     await Review.deleteOne({_id: _id})
+    //                 }
+    //             }
+    //         });
+    //
+    //         res.json(USER_DELETE.status, USER_DELETE.message);
+    //     } catch (e) {
+    //         next(e);
+    //     }
+    // }
 }
 
 

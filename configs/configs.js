@@ -8,5 +8,10 @@ module.exports = {
     DB_USER, DB_PASSWORD, DB_NAME, DB_HOST,
     PORT: process.env.PORT,
     HOST: process.env.HOST,
-    MONGO_URL: `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
-}
+    MONGO_URL: `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+
+    AWS_S3_REGION: process.env.AWS_S3_REGION,
+    AWS_S3_NAME: process.env.AWS_S3_NAME,
+    AWS_S3_ACCESS_KEY: process.env.AWS_S3_ACCESS_KEY,
+    AWS_S3_SECRET_KEY: process.env.AWS_S3_SECRET_KEY
+};

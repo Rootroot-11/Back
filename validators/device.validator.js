@@ -15,8 +15,6 @@ const createDeviceValidator = Joi.object({
         .trim(),
     brand: Joi
         .string(),
-    statusOnMagazine: Joi
-        .boolean(),
     email: Joi
         .string(),
 });

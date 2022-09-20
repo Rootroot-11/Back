@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const deviceController = require('../controllers/device.controller');
 const deviceByIdMiddleware = require('../middlewares/deviceById.middleware');
-const fileMiddleware = require('../middlewares/file.middleware');
+const FileMiddleware = require('../middlewares/FileMiddleware');
 const Device = require('../dataBase/Device');
+const deviceMiddleware = require("../middlewares/device.middleware");
 
 router.get('/',
     deviceController.getAllDevices
@@ -28,8 +29,10 @@ router.get('/search/:key', async (req, res) => {
 router.post(
     '/',
     // deviceMiddleware.isDeviceBodyValid,
+    // FileMiddleware.checkUserAvatar,
+
     // deviceMiddleware.createDeviceMiddleware,
-    fileMiddleware.single('image'),
+    // fileMiddleware.single('image'),
     deviceController.createDev
 );
 
