@@ -3,7 +3,6 @@ const deviceController = require('../controllers/device.controller');
 const deviceByIdMiddleware = require('../middlewares/deviceById.middleware');
 const FileMiddleware = require('../middlewares/FileMiddleware');
 const Device = require('../dataBase/Device');
-const deviceMiddleware = require("../middlewares/device.middleware");
 
 router.get('/',
     deviceController.getAllDevices

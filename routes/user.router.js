@@ -3,9 +3,8 @@ const userController = require('../controllers/user.controller');
 const userValidator = require('../validators/user.validator');
 const userMiddleware = require('../middlewares/user.middleware');
 const userByIdMiddleware = require('../middlewares/userById.middleware');
-const {authMiddleware} = require("../middlewares");
+// const {authMiddleware} = require("../middlewares");
 const {ADMIN} = require("../configs/user-roles.enum");
-const ErrorHandler = require("../errors/ErrorHandler");
 
 router.get(
     '/',

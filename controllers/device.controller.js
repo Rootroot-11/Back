@@ -2,7 +2,6 @@ const {POST_DEVICE, UPDATE} = require("../configs/email-action.enum");
 const {emailService, deviceService} = require("../service");
 const {USER_DELETE} = require("../errors");
 const Device = require("../dataBase/Device");
-const {getDeviceBy} = require("../service/deviceSpec.service");
 const review = require("../dataBase/Review");
 const s3Service = require("../service/s3Service");
 

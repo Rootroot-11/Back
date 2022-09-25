@@ -1,4 +1,3 @@
-const Review = require('../dataBase/Review');
 const ErrorHandler = require("../errors/ErrorHandler");
 const {USER_NOT_FOUND} = require("../errors");
 const mongoose = require("mongoose");

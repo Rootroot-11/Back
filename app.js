@@ -26,11 +26,10 @@ app.listen(process.env.PORT || 5000, () => {
 app.use(cors(
     ));
 
-const {userRouter, deviceRouter, authRouter, orderRouter, commentRouter} = require('./routes');
+const {userRouter, deviceRouter, authRouter, commentRouter} = require('./routes');
 
 app.use('/devices', deviceRouter);
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
-app.use('/api/orders', orderRouter);
 app.use('/api/reviews', commentRouter);
 
