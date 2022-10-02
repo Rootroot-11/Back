@@ -14,7 +14,6 @@ module.exports = {
     uploadImage: (file = {}, itemType, itemId) => {
         const {originalname, buffer, mimetype} = file;
         const filePath = _fileNameBuilder(originalname, itemType, itemId);
-        console.log(filePath)
 
         return bucket.upload ({
             Bucket: AWS_S3_NAME,
