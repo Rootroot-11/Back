@@ -24,7 +24,7 @@ app.listen(process.env.PORT || 5000, () => {
 });
 
 app.use(cors(
-    ));
+));
 
 const {userRouter, deviceRouter, authRouter, commentRouter} = require('./routes');
 

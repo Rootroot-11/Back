@@ -5,13 +5,13 @@ const {BAD_REQUEST} = require("../errors");
 module.exports = {
     checkUserAvatar: (req, res, next) => {
         try {
-            const {avatar} = req.files;
+            const {image} = req.files;
 
-            if (!avatar) {
+            if (!image) {
                 next();
                 return;
             }
-            const {name,size,mimetype}=avatar;
+            const {name,size,mimetype}=image;
 
             if(!PHOTOS_MIMETYPES.includes(mimetype)){
                 throw new ErrorHandler(BAD_REQUEST.status, BAD_REQUEST.message);

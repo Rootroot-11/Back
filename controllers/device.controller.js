@@ -55,17 +55,17 @@ module.exports = {
                 name: req.body.name,
                 email: req.body.email,
                 price: req.body.price,
-                // image: req.files,
                 brand: req.body.brand,
                 type: req.body.type
             });
+            console.log(device)
 
-            const avatar = req.files;
+            const image = req.file;
 
-            if (avatar) {
-                const info = await s3Service.uploadImage(avatar, 'users', device._id.toString());
+            if (image) {
+                const { Location } = await s3Service.uploadImage(image, 'users', device._id.toString());
 
-                device = await Device.findByIdAndUpdate({_id: device._id}, {avatar: info.Location}, {new: true});
+                device.image = Location
             }
             await device.save();
             res.send({

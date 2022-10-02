@@ -23,7 +23,7 @@ router.post(
 );
 
 router.get(
-    '/:nick_name',
+    '/:_id',
     commentController.getCommentByID
 );
 

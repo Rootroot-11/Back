@@ -12,6 +12,9 @@ const deviceSchema = new Schema({
     avatar: {
         type: String,
     },
+    image: {
+        type: String,
+    },
     price: {
         type: Number,
         // required: true,
