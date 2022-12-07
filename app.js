@@ -5,6 +5,7 @@ const cors = require('cors');
 // const config = require('config');
 // const PORT = config.get('serverPort');
 
+
 mongoose.connect('mongodb+srv://Georgiy:georgiy1234@myclaster.j4gkvjp.mongodb.net/?retryWrites=true&w=majority')
     .then(() => console.log('MongoDB has started ...')
     )
