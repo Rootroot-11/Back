@@ -20,20 +20,20 @@ app.use(express.urlencoded({extended: true}));
 app.use('/uploads', express.static('uploads'));
 app.use('/static', express.static(__dirname + '/uploads'));
 
-app.listen(process.env.PORT || 5000, () => {
-    console.log('App listen 5000');
-});
+// app.listen(process.env.PORT || 5000, () => {
+//     console.log('App listen 5000');
+// });
 
 app.use(cors(
 ));
 
 const {userRouter, deviceRouter, authRouter, commentRouter} = require('./routes');
 
-const port = process.env.PORT || 5000;
+// const port = process.env.PORT || 5000;
 const server = http.createServer(app);
 
-server.listen(port, () => {
-    console.log(`Started on port ${port}`);
+server.listen(process.env.PORT || 5000, () => {
+    console.log('App listen 5000');
 });
 
 

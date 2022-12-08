@@ -112,7 +112,7 @@ module.exports = {
 
             devices.map((element)=>{
 
-                element?.reviews.map((elem,index)=>{
+                element.reviews.map((elem,index)=>{
 
                     if(elem._id == _id){
 
