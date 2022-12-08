@@ -100,53 +100,53 @@ module.exports = {
         }
     },
 
-    deleteComment:  async (req, res) => {
-
-        try {
-
-            const { _id } = req.params;
-
-            const devices = await Device.find();
-
-            let device;
-
-            devices.map((element)=>{
-
-                element.reviews.map((elem,index)=>{
-
-                    if(elem._id == _id){
-
-                        device = element
-
-                        element.reviews.splice(index,1)
-
-                    }
-
-                })
-
-            })
-
-            console.log("device",device)
-
-            const id = device._id
-
-            delete device._id
-
-            const response = await Device.updateOne({_id:id},device);
-
-            console.log(response)
-
-            res.sendStatus(200);
-
-        } catch (e) {
-
-            console.log(e);
-
-            res.sendStatus(400);
-
-        }
-
-    }
+    // deleteComment:  async (req, res) => {
+    //
+    //     try {
+    //
+    //         const { _id } = req.params;
+    //
+    //         const devices = await Device.find();
+    //
+    //         let device;
+    //
+    //         devices.map((element)=>{
+    //
+    //             element?.reviews.map((elem,index)=>{
+    //
+    //                 if(elem._id == _id){
+    //
+    //                     device = element
+    //
+    //                     element.reviews.splice(index,1)
+    //
+    //                 }
+    //
+    //             })
+    //
+    //         })
+    //
+    //         console.log("device",device)
+    //
+    //         const id = device._id
+    //
+    //         delete device._id
+    //
+    //         const response = await Device.updateOne({_id:id},device);
+    //
+    //         console.log(response)
+    //
+    //         res.sendStatus(200);
+    //
+    //     } catch (e) {
+    //
+    //         console.log(e);
+    //
+    //         res.sendStatus(400);
+    //
+    //     }
+    //
+    // }
     // deleteComment: async (req, res, next) => {
     //     try {
     //         const _id = req.params._id;
