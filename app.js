@@ -29,6 +29,14 @@ app.use(cors(
 
 const {userRouter, deviceRouter, authRouter, commentRouter} = require('./routes');
 
+const port = process.env.PORT || 5000;
+const server = http.createServer(app);
+
+server.listen(port, () => {
+    console.log(`Started on port ${port}`);
+});
+
+
 app.use('/devices', deviceRouter);
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
