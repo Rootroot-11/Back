@@ -27,9 +27,9 @@ router.get(
     commentController.getCommentByID
 );
 
-router.delete(
-    '/:_id',
-    commentController.deleteComment
-);
+// router.delete(
+//     '/:_id',
+//     commentController.deleteComment
+// );
 
 module.exports = router;
